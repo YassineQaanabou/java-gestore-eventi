@@ -11,23 +11,23 @@ public class ProgrammEventi {
         this.title = title;
     }
 
-     protected void addEvent(Events event) {
+    protected void addEvent(Events event) {
         events.add(event);
     }
 
     public void deleteEvents() {
-            events.clear();
-        }
+        events.clear();
+    }
 
 
-    public String eventsOnDate(LocalDate date) {
-        ArrayList<Events> eventsOnDate = new ArrayList<>();
+    public String eventsOnDate(String date) {
+        ArrayList<Events> eventsOnDateArray = new ArrayList<>();
         for (Events event : events) {
-            if (event.getDate() == date) {
-                eventsOnDate.add(event);
+            if (event.getDate().equals(LocalDate.parse(date))) {
+                eventsOnDateArray.add(event);
             }
         }
-        return eventsOnDate.toString();
+        return eventsOnDateArray.toString();
     }
 
     public int countEvents() {
