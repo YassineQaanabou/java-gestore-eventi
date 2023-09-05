@@ -6,7 +6,7 @@ public class Events {
     private String title;
     private LocalDate date;
     private int totalSpots;
-    private int  bookedSpots;
+    private int bookedSpots;
 
     public Events(String title, LocalDate date, int totalSpots) {
         isValidDate(date);
@@ -14,17 +14,17 @@ public class Events {
         this.title = title;
         this.date = date;
         this.totalSpots = totalSpots;
-        this.bookedSpots=0;
+        this.bookedSpots = 0;
     }
 
-    private void isValidDate(LocalDate date){
-        if (date.isBefore(LocalDate.now())){
+    private void isValidDate(LocalDate date) {
+        if (date.isBefore(LocalDate.now())) {
             throw new RuntimeException();
         }
     }
 
-    private void isValidSpots(int totalSpots){
-        if (totalSpots<0){
+    private void isValidSpots(int totalSpots) {
+        if (totalSpots < 0) {
             throw new RuntimeException();
         }
     }
@@ -53,18 +53,18 @@ public class Events {
         return bookedSpots;
     }
 
-    public void bookSpots(int spotsToBook){
-        if(date.isAfter(LocalDate.now()) && bookedSpots<totalSpots){
-            bookedSpots+=spotsToBook;
+    public void bookSpots(int spotsToBook) {
+        if (date.isAfter(LocalDate.now()) && spotsToBook < (totalSpots - bookedSpots)) {
+            bookedSpots += spotsToBook;
         } else {
             throw new RuntimeException();
         }
 
     }
 
-    public void cancelBookedSpots(int spotsToCancel){
-        if(date.isAfter(LocalDate.now()) && bookedSpots>0){
-            bookedSpots-=spotsToCancel;
+    public void cancelBookedSpots(int spotsToCancel) {
+        if (date.isAfter(LocalDate.now()) && bookedSpots > 0 && spotsToCancel < bookedSpots) {
+            bookedSpots -= spotsToCancel;
         } else {
             throw new RuntimeException();
         }
@@ -73,7 +73,7 @@ public class Events {
 
     @Override
     public String toString() {
-        return "Event:" + date+
+        return "Event:" + date +
                 "-" + title;
     }
 }
