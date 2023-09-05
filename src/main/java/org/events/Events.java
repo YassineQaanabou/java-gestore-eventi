@@ -2,20 +2,6 @@ package org.events;
 
 import java.time.LocalDate;
 
-/*La consegna è di creare una classe Evento che abbia le seguenti proprietà:
-        ● titolo
-        ● data
-        ● numero di posti in totale
-        ● numero di posti prenotati
-        Quando si istanzia un nuovo evento questi attributi devono essere tutti valorizzati nel costruttore ,
-        tranne posti prenotati che va inizializzato a 0.
-        Inserire il controllo che la data non sia già passata e che il numero di posti totali sia positivo.
-         In caso contrario sollevare opportune eccezioni.
-        Aggiungere metodi getter e setter in modo che:
-        ● titolo sia in lettura e in scrittura
-        ● data sia in lettura e scrittura
-        ● numero di posti totale sia solo in lettura
-        ● numero di posti prenotati sia solo in lettura*/
 public class Events {
     private String title;
     private LocalDate date;
@@ -65,5 +51,29 @@ public class Events {
 
     public int getBookedSpots() {
         return bookedSpots;
+    }
+
+    public void bookSpots(int spotsToBook){
+        if(date.isAfter(LocalDate.now()) && bookedSpots<totalSpots){
+            bookedSpots+=spotsToBook;
+        } else {
+            throw new RuntimeException();
+        }
+
+    }
+
+    public void cancelBookedSpots(int spotsToCancel){
+        if(date.isAfter(LocalDate.now()) && bookedSpots>0){
+            bookedSpots-=spotsToCancel;
+        } else {
+            throw new RuntimeException();
+        }
+
+    }
+
+    @Override
+    public String toString() {
+        return "Event:" + date+
+                "-" + title;
     }
 }
