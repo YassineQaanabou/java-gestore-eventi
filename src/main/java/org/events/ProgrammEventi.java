@@ -17,10 +17,9 @@ public class ProgrammEventi {
     }
 
     public static void deleteEvents() {
-        for (int i = 0; i < events.size(); i++) {
-            events.remove(i);
+            events.clear();
         }
-    }
+
 
     public ArrayList<Events> eventsOnDate(LocalDate date) {
         ArrayList<Events> eventsOnDate = new ArrayList<>();
